@@ -35,8 +35,7 @@ void error_print_stack(int a)
 
 void  stack_init(stack * s,size_t size_slot_arr )
 {
-    void *stk=malloc(size_slot_arr*STACKSIZE+sizeof(stack));
-    s=(stack *)stk;
+    void *stk=calloc(size_slot_arr,STACKSIZE);
     s->buf=stk;
     s->i=0;
     if(stk==NULL) StackError=STACKNOTMEM;
