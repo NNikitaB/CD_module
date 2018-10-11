@@ -8,9 +8,9 @@
 #define STACKSIZE 200
 #define STACKEMPLY 1
 #define STACKFULL 2
-extern int StackError=STACKOK;
+int StackError=STACKOK;
 typedef struct {void * buf; size_t i; } stack;
-void  stack_init(stack * s,size_t size_slot_arr );
+stack * stack_init(size_t size_slot_arr );
 void stackput(stack * s,void * basetype,size_t size_slot_arr);
 void stackout(stack * s,void * basetype,size_t size_slot_arr);
 int stackemply(stack * s);

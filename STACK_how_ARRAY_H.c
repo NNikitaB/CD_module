@@ -7,10 +7,10 @@
 #define STACKEMPLY 1
 #define STACKFULL 2
 #define STACKNOTMEM 3
-extern StackError;
+extern int StackError;
 typedef struct {void * buf; size_t i; } stack;
 
-void  stack_init(stack * s,size_t size_slot_arr );
+stack *  stack_init(size_t size_slot_arr );
 void stackput(stack * s,void * basetype,size_t size_slot_arr);
 void stackout(stack * s,void * basetype,size_t size_slot_arr);
 int stackemply(stack * s);
@@ -33,12 +33,14 @@ void error_print_stack(int a)
     }
 }
 
-void  stack_init(stack * s,size_t size_slot_arr )
+stack * stack_init(size_t size_slot_arr )
 {
-    void *stk=calloc(size_slot_arr,STACKSIZE);
+    void *stk=calloc(STACKSIZE,size_slot_arr);
+    stack * s=(stack *)malloc(sizeof(stack));
     s->buf=stk;
     s->i=0;
     if(stk==NULL) StackError=STACKNOTMEM;
+    return s;
 }
 void stackput(stack * s,void * basetype,size_t size_slot_arr)
 {
