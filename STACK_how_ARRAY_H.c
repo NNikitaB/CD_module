@@ -21,15 +21,16 @@ void error_print_stack(int a);
 
 
 
-void error_print_stack(int a)
+void error_print_stack(int b)
 {
-    switch(a)
+    static char a[5]={3,3,3,3,3};
+    switch(b)
     {
-        case STACKOK: fputs("All-OK",stdout);break;
-        case STACKEMPLY: fputs("STACK-EMLY",stdout);break;
-        case STACKFULL: fputs("STACK-FULL",stdout);break;
-        case STACKNOTMEM: fputs("STACK-NOT MEMORY IN DINAMIC MEM",stdout);break;
-        default: fputs("Unknown-error",stdout);break;
+        case STACKOK:if(a[0]>0) fputs("All-OK",stdout);a[0]-=1; break;
+        case STACKEMPLY: if(a[1]>0)fputs("STACK-EMLY",stdout);a[1]-=1; break;
+        case STACKFULL:if(a[2]>0) fputs("STACK-FULL",stdout);a[2]-=1; break;
+        case STACKNOTMEM:if(a[3]>0) fputs("STACK-NOT MEMORY IN DINAMIC MEM",stdout);a[3]-=1; break;
+        default:if(a[4]>0) fputs("Unknown-error",stdout);a[4]-=1; break;
     }
 }
 
