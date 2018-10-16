@@ -24,7 +24,7 @@ void error_print_queue(int b);
 
 void error_print_queue(int b)
 {
-     char a[5]={3,3,3,3,3};
+     static char a[5]={3,3,3,3,3};
     switch(b)
     {
         case QUEUEOK: if(a[0]>0)fputs("All-OK",stdout),a[0]-=1; break;
